@@ -94,4 +94,36 @@ public class ScoreboardDaoImpl {
 		return myScores;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	public void createScore(Score score) {
+		
+		String sql = "INSERT INTO scores (ranking,score,userid) VALUES (?,?,?);";
+		
+		try {
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, score.getRanking());
+			stmt.setDouble(2, score.getScore());
+			stmt.setString(3, score.getUserid());
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+

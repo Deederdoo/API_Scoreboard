@@ -2,7 +2,9 @@ package controller;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -49,5 +51,15 @@ public class MyResource {
     	dao = new ScoreboardDaoImpl();
     	
     	return dao.getAllScores();
+    }
+    
+    @POST
+    @Path("score")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public void createScore(Score score) {
+    	
+    	dao = new ScoreboardDaoImpl();
+    	
+    	dao.createScore(score);
     }
 }
