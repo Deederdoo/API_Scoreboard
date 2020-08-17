@@ -63,7 +63,7 @@ public class ScoreboardDaoImpl {
 	 * */
 	public List<Score> getAllScores() {
 		
-		String sql = "SELECT * FROM scores;";
+		String sql = "SELECT * FROM scores ORDER BY ranking ASC;";
 		
 		List<Score> myScores = new ArrayList<>();
 		
@@ -106,9 +106,31 @@ public class ScoreboardDaoImpl {
 		try {
 			
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, score.getRanking());
+			stmt.setInt(1, 0);
 			stmt.setDouble(2, score.getScore());
 			stmt.setString(3, score.getUserid());
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	public void updateRankingByID(int id, int newRank) {
+		
+		String sql = "UPDATE scores SET ranking = ? WHERE id = ?;";
+		
+		try {
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, newRank);
+			stmt.setInt(2, id);
 			stmt.executeUpdate();
 			
 		}catch(SQLException e) {
