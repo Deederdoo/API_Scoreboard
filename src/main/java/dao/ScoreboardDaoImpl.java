@@ -29,9 +29,9 @@ public class ScoreboardDaoImpl {
 	 * 
 	 * 
 	 * */
-	public Score getScoreByID(int id) {
+	public Score getScoreByID(int id, String diff) {
 		
-		String sql = "SELECT * FROM scores WHERE ID = " + id;
+		String sql = "SELECT * FROM scores_" + diff + " WHERE ID = " + id;
 		
 		Score score = new Score();
 		
@@ -61,9 +61,9 @@ public class ScoreboardDaoImpl {
 	 * 
 	 * 
 	 * */
-	public List<Score> getAllScores() {
+	public List<Score> getAllScores(String diff) {
 		
-		String sql = "SELECT * FROM scores ORDER BY ranking ASC;";
+		String sql = "SELECT * FROM scores_" + diff + " ORDER BY ranking ASC;";
 		
 		List<Score> myScores = new ArrayList<>();
 		
@@ -99,9 +99,9 @@ public class ScoreboardDaoImpl {
 	 * 
 	 * 
 	 * */
-	public void createScore(Score score) {
+	public void createScore(Score score, String diff) {
 		
-		String sql = "INSERT INTO scores (ranking,score,userid) VALUES (?,?,?);";
+		String sql = "INSERT INTO scores_" + diff + " (ranking,score,userid) VALUES (?,?,?);";
 		
 		try {
 			
@@ -122,9 +122,9 @@ public class ScoreboardDaoImpl {
 	 * 
 	 * 
 	 * */
-	public void updateRankingByID(int id, int newRank) {
+	public void updateRankingByID(int id, int newRank, String diff) {
 		
-		String sql = "UPDATE scores SET ranking = ? WHERE id = ?;";
+		String sql = "UPDATE scores_" + diff + " SET ranking = ? WHERE id = ?;";
 		
 		try {
 			

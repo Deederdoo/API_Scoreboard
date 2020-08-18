@@ -10,11 +10,26 @@ public class FormatRanking {
 	private ScoreboardDaoImpl dao;
 	private List<Score> allScores;
 	
-	public List<Score> shuffleNewRanking() {
+	public List<Score> shuffleNewRanking(String difficulty) {
 		
 		dao = new ScoreboardDaoImpl();
 		
-		allScores = dao.getAllScores();
+		if(difficulty == "easy") {
+			
+			allScores = dao.getAllScores(difficulty);
+			
+		}else if(difficulty == "intermediate") {
+			
+			allScores = dao.getAllScores(difficulty);
+			
+		}else if(difficulty == "hard") {
+			
+			allScores = dao.getAllScores(difficulty);
+			
+		}else if(difficulty == "savant") {
+			
+			allScores = dao.getAllScores(difficulty);
+		}
 		
 		allScores.sort(new ScoreSorter());
 		
