@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Score {
 
 	private int id;
+	private String ux_id;
 	private int ranking;
 	private double score;
 	private String userid;
@@ -15,6 +16,12 @@ public class Score {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getUx_id() {
+		return ux_id;
+	}
+	public void setUx_id(String ux_id) {
+		this.ux_id = ux_id;
 	}
 	public double getScore() {
 		return score;

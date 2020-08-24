@@ -29,9 +29,9 @@ public class ScoreboardDaoImpl {
 	 * 
 	 * 
 	 * */
-	public Score getScoreByID(int id) {
+	public Score getScoreByUXID(int id, String diff) {
 		
-		String sql = "SELECT * FROM scores WHERE ID = " + id;
+		String sql = "SELECT * FROM scores_" + diff + " WHERE ux_id = " + id;
 		
 		Score score = new Score();
 		
@@ -43,9 +43,11 @@ public class ScoreboardDaoImpl {
 			if(rs.next()) {
 				
 				score.setId(rs.getInt(1));
-				score.setRanking(rs.getInt(2));
-				score.setScore(rs.getDouble(3));
-				score.setUserid(rs.getString(4));
+				score.setUx_id(rs.getString(2));
+				score.setUserid(rs.getString(3));
+				score.setRanking(rs.getInt(4));
+				score.setScore(rs.getDouble(5));
+				score.setUserid(rs.getString(6));
 			}
 			
 		}catch(SQLException e) {
@@ -61,9 +63,9 @@ public class ScoreboardDaoImpl {
 	 * 
 	 * 
 	 * */
-	public List<Score> getAllScores() {
+	public List<Score> getAllScores(String diff) {
 		
-		String sql = "SELECT * FROM scores;";
+		String sql = "SELECT * FROM scores_" + diff + " ORDER BY ranking ASC;";
 		
 		List<Score> myScores = new ArrayList<>();
 		
@@ -77,9 +79,10 @@ public class ScoreboardDaoImpl {
 				Score dbScore = new Score();
 				
 				dbScore.setId(rs.getInt(1));
-				dbScore.setRanking(rs.getInt(2));
-				dbScore.setScore(rs.getDouble(3));
-				dbScore.setUserid(rs.getString(4));
+				dbScore.setUx_id(rs.getString(2));
+				dbScore.setRanking(rs.getInt(3));
+				dbScore.setScore(rs.getDouble(4));
+				dbScore.setUserid(rs.getString(5));
 				
 				myScores.add(dbScore);
 			}
@@ -94,4 +97,59 @@ public class ScoreboardDaoImpl {
 		return myScores;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	public void createScore(Score score, String diff) {
+		
+		String sql = "INSERT INTO scores_" + diff + " (ux_id,ranking,score,userid) VALUES (?,?,?,?);";
+		
+		try {
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, score.getUx_id());
+			stmt.setInt(2, 0);
+			stmt.setDouble(3, score.getScore());
+			stmt.setString(4, score.getUserid());
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	public void updateRankingByID(int id, int newRank, String diff) {
+		
+		String sql = "UPDATE scores_" + diff + " SET ranking = ? WHERE id = ?;";
+		
+		try {
+			
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, newRank);
+			stmt.setInt(2, id);
+			stmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+

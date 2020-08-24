@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dedoru</groupId>
-    <artifactId>score_api</artifactId>
+    <artifactId>API_Scoreboard</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>score_api</name>
+    <name>API_Scoreboard</name>
 
     <build>
-        <finalName>score_api</finalName>
+        <finalName>API_Scoreboard</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
