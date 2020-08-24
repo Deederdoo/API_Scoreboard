@@ -36,13 +36,13 @@ public class MyResource {
     }
     
     @GET
-    @Path("scores_easy/{id}")
+    @Path("scores_easy/ux_id/{ux_id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Score testTargetGET(@PathParam("id") int id) {
+    public Score testTargetGET(@PathParam("ux_id") int id) {
     	
     	dao = new ScoreboardDaoImpl();
     	
-    	return dao.getScoreByID(id, "easy");
+    	return dao.getScoreByUXID(id, "easy");
     }
     
     @GET
