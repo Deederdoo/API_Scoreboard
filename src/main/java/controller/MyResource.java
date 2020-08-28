@@ -136,32 +136,32 @@ public class MyResource {
     }
     
     @GET
-    @Path("scores_savant")
+    @Path("scores_endurance")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Score> getAllSavantScores() {
+    public List<Score> getAllEnduranceScores() {
     	
     	dao = new ScoreboardDaoImpl();
     	
-    	return dao.getAllScores("savant");
+    	return dao.getAllScores("endurance");
     }
     
     @POST
-    @Path("score_savant")
+    @Path("score_endurance")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public void createSavantScore(Score score) {
+    public void createEnduranceScore(Score score) {
     	
     	List<Score> updatedScores;
     	
     	dao = new ScoreboardDaoImpl();
     	fr = new FormatRanking();
     	
-    	dao.createScore(score, "savant");
+    	dao.createScore(score, "endurance");
     	
-    	updatedScores = fr.shuffleNewRanking("savant");
+    	updatedScores = fr.shuffleNewRanking("endurance");
     	
     	for(int i = 0; i < updatedScores.size(); i++) {
     		
-    		dao.updateRankingByID(updatedScores.get(i).getId(), updatedScores.get(i).getRanking(), "savant");
+    		dao.updateRankingByID(updatedScores.get(i).getId(), updatedScores.get(i).getRanking(), "endurance");
     	}
     }
 }
