@@ -24,7 +24,7 @@ CREATE TABLE `scoreboarddb`.`scores_hard` (
   `userid` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`id`));
   
-CREATE TABLE `scoreboarddb`.`scores_savant` (
+CREATE TABLE `scoreboarddb`.`scores_endurance` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ux_id` VARCHAR(24) NOT NULL,
   `ranking` INT NOT NULL,

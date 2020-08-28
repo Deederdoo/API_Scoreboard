@@ -26,7 +26,7 @@ public class FormatRanking {
 			
 			allScores = dao.getAllScores(difficulty);
 			
-		}else if(difficulty == "savant") {
+		}else if(difficulty == "endurance") {
 			
 			allScores = dao.getAllScores(difficulty);
 		}
