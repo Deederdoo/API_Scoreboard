@@ -10,17 +10,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dao.ScoreboardDaoImpl;
+import dao.Scoreboard_DaoImpl;
 import model.Score;
 import tools.FormatRanking;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
-public class MyResource {
+@Path("myresource") // keep this named as is (My Android Application uses this to get data)
+public class Score_Resource {
 
-	private ScoreboardDaoImpl dao;
+	private Scoreboard_DaoImpl dao;
 	private FormatRanking fr;
 	
     /**
@@ -32,15 +32,21 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Dedoru API";
+        return "Dedoru Scoreboard Resource";
     }
     
+    /**
+     * Method handling HTTP GET requests. Connect 
+     * 
+     * @return String that will return a JSON type file
+     * 
+     * */
     @GET
     @Path("scores_easy/ux_id/{ux_id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Score testTargetGET(@PathParam("ux_id") int id) {
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	
     	return dao.getScoreByUXID(id, "easy");
     }
@@ -50,7 +56,7 @@ public class MyResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Score> getAllEasyScores() {
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	
     	return dao.getAllScores("easy");
     }
@@ -62,7 +68,7 @@ public class MyResource {
     	
     	List<Score> updatedScores;
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	fr = new FormatRanking();
     	
     	dao.createScore(score, "easy");
@@ -80,7 +86,7 @@ public class MyResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Score> getAllIntermediateScores() {
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	
     	return dao.getAllScores("intermediate");
     }
@@ -92,7 +98,7 @@ public class MyResource {
     	
     	List<Score> updatedScores;
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	fr = new FormatRanking();
     	
     	dao.createScore(score, "intermediate");
@@ -110,7 +116,7 @@ public class MyResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Score> getAllHardScores() {
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	
     	return dao.getAllScores("hard");
     }
@@ -122,7 +128,7 @@ public class MyResource {
     	
     	List<Score> updatedScores;
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	fr = new FormatRanking();
     	
     	dao.createScore(score, "hard");
@@ -140,7 +146,7 @@ public class MyResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Score> getAllEnduranceScores() {
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	
     	return dao.getAllScores("endurance");
     }
@@ -152,7 +158,7 @@ public class MyResource {
     	
     	List<Score> updatedScores;
     	
-    	dao = new ScoreboardDaoImpl();
+    	dao = new Scoreboard_DaoImpl();
     	fr = new FormatRanking();
     	
     	dao.createScore(score, "endurance");
