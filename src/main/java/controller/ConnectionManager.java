@@ -15,12 +15,22 @@ public enum ConnectionManager {
 
 	ConnectionManager() {
 
-		url = "jdbc:mysql://localhost:3306/scoreboarddb?autoReconnect=true&useSSL=false";
-		username = "root";
-		password = "password";
+		//jdbc:mysql://localhost:3306/scoreboarddb?autoReconnect=true&useSSL=false
+		username = ""; //root
+		password = ""; //password
 	}
 
-	public Connection getConnection() throws SQLException {
+	/**
+	 * 
+	 * Creates a connection to desired database by passing the database name
+	 * through the parameters and function locks threads to only allow one
+	 * to create the connection
+	 * 
+	 * @param	database	String holding database name to be used for connection
+	 * @return	conn		Return Connection to the database
+	 * 
+	 * */
+	public Connection getConnection(String database) throws SQLException, ClassNotFoundException {
 		
 		Connection conn = null;
 		connectionLock.lock();
@@ -29,14 +39,16 @@ public enum ConnectionManager {
 		
 		try {
 			
+			url = "jdbc:mysql://ip****:3306/"+ database 
+					+ "?autoReconnect=true&useJDBCCompliantTimezoneShift"
+					+ "=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			conn = DriverManager.getConnection(url, username, password);
 			
 		} finally {
 			
 			connectionLock.unlock();
 		}
-
-		System.out.println("Connected!");
+		
 		return conn;
 	}
 }

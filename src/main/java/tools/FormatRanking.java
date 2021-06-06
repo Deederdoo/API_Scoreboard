@@ -2,17 +2,17 @@ package tools;
 
 import java.util.List;
 
-import dao.ScoreboardDaoImpl;
+import dao.Scoreboard_DaoImpl;
 import model.Score;
 
 public class FormatRanking {
 	
-	private ScoreboardDaoImpl dao;
+	private Scoreboard_DaoImpl dao;
 	private List<Score> allScores;
 	
 	public List<Score> shuffleNewRanking(String difficulty) {
 		
-		dao = new ScoreboardDaoImpl();
+		dao = new Scoreboard_DaoImpl();
 		
 		if(difficulty == "easy") {
 			

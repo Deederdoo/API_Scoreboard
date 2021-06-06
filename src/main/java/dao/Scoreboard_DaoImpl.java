@@ -7,16 +7,16 @@ import java.util.List;
 import controller.ConnectionManager;
 import model.Score;
 
-public class ScoreboardDaoImpl {
+public class Scoreboard_DaoImpl {
 
 	private Connection con = null;
 	
-	public ScoreboardDaoImpl() {
+	public Scoreboard_DaoImpl() {
 		
 		try {
 			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = ConnectionManager.INSTANCE.getConnection();
+			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+			con = ConnectionManager.INSTANCE.getConnection("deedoodl_scoreboarddb");
 			
 		}catch(Exception e) {
 			
